@@ -7,7 +7,7 @@ public class Palindrom {
     // Przykłady palindromów: ala, zaraz, abba, 122221
 
 
-    public static boolean ifPalindrom(String text) {
+    public boolean ifPalindrom(String text) {
         text = text.trim();
         if (text.length() % 2 == 0) {
             for (int i = 0; i < text.length() / 2; i++) {

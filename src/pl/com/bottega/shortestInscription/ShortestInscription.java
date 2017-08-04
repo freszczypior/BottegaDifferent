@@ -6,7 +6,7 @@ public class ShortestInscription {
 
     //Napisz funkcję, króra dla zadanej tablicy napisów zwraca długość najkrótszego napisu w tablicy.
 
-    public static String getShortestInscription(String[] tab){
+    public String getShortestInscription(String[] tab){
         if (tab.length < 0)
             throw new NoSuchElementException("pusta tablica");
         String shortest = tab[0];
