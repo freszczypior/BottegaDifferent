@@ -1,0 +1,7 @@
+package pl.com.bottega.books;
+
+
+public enum Genre {
+    FICTION, COMEDY, DRAMA, HORROR, NON_FICTION, REALISTIC, ROMANTIC, SATIRE,
+    TRAGEDY, TRAGICOMEDY, FANTASY, MYTHOLOGY
+}
