@@ -2,8 +2,6 @@ package pl.com.bottega;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
-
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 import pl.com.bottega.books.Book;
 import pl.com.bottega.books.BookCollections;
@@ -30,15 +28,15 @@ class BookTest {
     @Test
     void canFindBooksByAuthor() {
         List<Book> list = new LinkedList<>(BookCollections.findByAuthor(books, new Person("celina", "celinowska")));
-        assertEquals("czarno biała", list.get(0).getTitle());
-        assertEquals("biała", list.get(1).getTitle());
+//        assertEquals("czarno biała", list.get(0).getTitle());
+//        assertEquals("biała", list.get(1).getTitle());
         assertThat(list).extracting(Book::getTitle).containsOnly("czarno biała", "biała");
     }
 
     @Test
     void canFindBooksByPhrase() {
         List<Book> list = new LinkedList<>(BookCollections.findByTitle(books, "pom"));
-        assertEquals("pomarańczowa", list.get(0).getTitle());
+//        assertEquals("pomarańczowa", list.get(0).getTitle());
         assertThat(list).filteredOn("title", "pomarańczowa");
     }
 
@@ -70,7 +68,7 @@ class BookTest {
     @Test
     void canGenerateGenreMap() {
         Map<Genre, Collection<Book>> map = BookCollections.genresMap(books);
-        assertEquals(10, map.keySet().size());
+//        assertEquals(10, map.keySet().size());
         assertThat(map.keySet().size()).isEqualTo(10);
     }
 
@@ -89,9 +87,10 @@ class BookTest {
     @Test
     void canCheckWhoWroteBiggestAmountOfBooks() {
         Person test = BookCollections.bestAuthor(books);
-        Person max = new Person("danuta", "danutowska");
-        assertEquals(max.getLastN(), test.getLastN());
-        assertThat(max).extracting(max.getFirstN(), max.getLastN()).contains(tuple("danuta", "danutowska"));
+//        Person max = new Person("danuta", "danutowska");
+//        assertEquals(max.getLastN(), test.getLastN());
+        assertThat(test.getFirstN()).isEqualToIgnoringCase("danuta");
+        assertThat(test.getLastN()).isEqualToIgnoringCase("danutowska");
     }
 
     @Test
@@ -122,7 +121,7 @@ class BookTest {
     @Test
     void canCheckWhichGenreContainsBiggestAmountOfBooks() {
         Genre genre = BookCollections.mostPopularGenre(books);
-        assertTrue(genre.equals(ROMANTIC));
+//        assertTrue(genre.equals(ROMANTIC));
         assertThat(genre).isEqualTo(ROMANTIC);
     }
 
