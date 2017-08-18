@@ -97,4 +97,11 @@ class MyListTest {
         assertEquals("one, two, three, four", test);
     }
 
+    @Test
+    void shouldIterateOverList(){
+        for (String s: list) {
+            System.out.println(s);
+        }
+    }
+
 }

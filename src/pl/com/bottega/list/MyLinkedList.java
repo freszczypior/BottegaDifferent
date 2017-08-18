@@ -1,5 +1,6 @@
 package pl.com.bottega.list;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class MyLinkedList<E> implements MyList<E> {
@@ -72,6 +73,7 @@ public class MyLinkedList<E> implements MyList<E> {
         }
         if (temp.next == null) {
             last = temp.prev;
+            temp.next = null;
         } else {
             temp.next.prev = temp.prev;
         }
@@ -108,7 +110,7 @@ public class MyLinkedList<E> implements MyList<E> {
         if (outOfBounds(index))
             throw new IndexOutOfBoundsException("podano liczbę spoza zakresu");
         Link<E> temp = first;
-        for (int j = 1; j < index; j++) {
+        for (int j = 0; j < index; j++) {  //TODO zmieniłem z j=1 na j=0 bo public Iterator<E> iterator()
             temp = temp.next;
         }
         return temp.element;
@@ -161,6 +163,41 @@ public class MyLinkedList<E> implements MyList<E> {
         counter = 0;
     }
 
+    public String toString() {
+        if (ifEmpty())
+            throw new NoSuchElementException("lista nie zawiera elementów");
+        Link<E> temp = first;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.valueOf(first.element));
+        for (int j = 1; j < length(); j++) {
+            temp = temp.next;
+            stringBuilder.append(", ").append(temp.element);
+        }
+        return String.valueOf(stringBuilder);
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+
+            Link<E> currentLink = first;
+
+            @Override
+            public boolean hasNext() {
+                return currentLink.next != null;
+            }
+                    // Iterator ma metodę remove, którą można dopisać tutaj jak kolejne @Overide
+            @Override
+            public E next() {
+                if (!hasNext())
+                    throw new NoSuchElementException();
+                Link<E> temp = currentLink;
+                currentLink = currentLink.next;
+                return temp.element;
+            }
+        };
+    }
+
     private class Link<E> {     // rekurencyjna struktura danych, ma ref do samej siebie
 
         private E element;
@@ -174,17 +211,6 @@ public class MyLinkedList<E> implements MyList<E> {
         }
 
     }
-    public String toString(){
-        if (ifEmpty())
-            throw new NoSuchElementException("lista nie zawiera elementów");
-        Link<E> temp = first;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.valueOf(first.element));
-        for (int j = 1; j < length(); j++) {
-            temp = temp.next;
-            stringBuilder.append(", ").append(temp.element);
-        }
-        return String.valueOf(stringBuilder);
-    }
 }
+
 

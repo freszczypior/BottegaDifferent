@@ -1,6 +1,20 @@
 package pl.com.bottega.list;
 
-public interface MyList<E> {
+public interface MyList<E> extends Iterable<E>{
+
+    //Listą nazywamy generyczną strukturę danych utrzymującą porządek, która udostępnia następujące operacje:
+//
+//        void add(E e) - dodaje element na koniec listy
+//        void remove(E e) - usuwa z listy pierwsze wsytąpienie elementu e
+//        int length() - zwraca długość listy
+//        void remove(int i) - usuwa z listy element występujący na pozycji i (i >= 0, i<length())
+//        E first() - zwraca pierwszy element listy
+//        E last() - zwraca ostatni element listy
+//        E get(int i) - zwraca ostatni element listy
+//
+//        Stwórz interfejs MyList zawierający w.w. operacje oraz dwie jego implementcje MyArrayList i MyLinkedList./
+//
+//        Rozszerz interfejs MyList interfejsem Iterbale i zaimplementuj odpowiednie metody.
 
     void add(E e);                  // dodaje element na koniec listy
 

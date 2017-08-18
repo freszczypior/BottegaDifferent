@@ -1,18 +1,6 @@
 package pl.com.bottega.list;
 
-//Listą nazywamy generyczną strukturę danych utrzymującą porządek, która udostępnia następujące operacje:
-//
-//        void add(E e) - dodaje element na koniec listy
-//        void remove(E e) - usuwa z listy pierwsze wsytąpienie elementu e
-//        int length() - zwraca długość listy
-//        void remove(int i) - usuwa z listy element występujący na pozycji i (i >= 0, i<length())
-//        E first() - zwraca pierwszy element listy
-//        E last() - zwraca ostatni element listy
-//        E get(int i) - zwraca ostatni element listy
-//
-//        Stwórz interfejs MyList zawierający w.w. operacje oraz dwie jego implementcje MyArrayList i MyLinkedList.
-
-
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class MyArrayList<E> implements MyList<E> {
@@ -26,12 +14,6 @@ public class MyArrayList<E> implements MyList<E> {
     }
 
     public static void main(String[] args) {
-
-        MyArrayList<String> list = new MyArrayList<>();
-        list.add("one");
-        list.add("two");
-        list.remove("one");
-        System.out.println(list.ifEmpty());
     }
 
     @Override
@@ -159,4 +141,23 @@ public class MyArrayList<E> implements MyList<E> {
         return String.valueOf(stringBuilder);
     }
 
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+
+            private int currentIndex;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < counter;
+            }
+
+            @Override
+            public E next() {
+                if (!hasNext())
+                    throw new NoSuchElementException();
+                return list[currentIndex++];
+            }
+        };
+    }
 }
