@@ -87,7 +87,7 @@ class BookTest {
     @Test
     void canCheckWhoWroteBiggestAmountOfBooks() {
         Person test = BookCollections.bestAuthor(books);
-//        Person max = new Person("danuta", "danutowska");
+//        AbstractPerson max = new AbstractPerson("danuta", "danutowska");
 //        assertEquals(max.getLastN(), test.getLastN());
         assertThat(test.getFirstN()).isEqualToIgnoringCase("danuta");
         assertThat(test.getLastN()).isEqualToIgnoringCase("danutowska");
