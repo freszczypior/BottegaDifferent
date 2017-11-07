@@ -1,1 +1,2 @@
-# BottegaDifferent - zestaw mniejszych objętościowo zadań realizowanych w ramach szkolenia Bottega 
+#BottegaDifferent
+Repository contains various tasks implemented while learning the basics of java.
